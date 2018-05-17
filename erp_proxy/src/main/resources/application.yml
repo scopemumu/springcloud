@@ -1,0 +1,42 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+  instance:
+    hostname: localhost
+    instance-id: http://localhost:80
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+server:
+  port: 80
+      
+spring:
+  application:
+    name: gateway
+  rabbitmq:
+    host: 192.168.3.128
+    port: 5672
+  
+zuul:
+  routes:
+    usermgt-service: /usermgt/**
+    productdev-service: /productdev/**
+    web-service: /web/**
+  sensitive-headers:
+  add-host-header: true
+
+security:
+  basic:
+    enabled: false
+#hystrix
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+#ribbon
+ribbon:
+  ConnectTimeout: 60000
+  ReadTimeout: 60000
+  

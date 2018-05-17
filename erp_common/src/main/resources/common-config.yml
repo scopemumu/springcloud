@@ -1,0 +1,24 @@
+spring:
+  rabbitmq:
+    host: 192.168.3.128
+    port: 5672
+  redis:
+    host: 192.168.3.253
+    port: 6379
+    pool:
+      max-idle: 100
+      min-idle: 1
+      max-active: 300
+      max-wait: -1
+  data:
+    mongodb:
+      message:
+        host: 192.168.3.110
+        port: 27017
+        database: erp_message
+        username: smt
+        password: smt
+ 
+erp:
+  common:        
+    ignoreTokenUrls: /swagger*/**,/v2/api-docs/**,/authentication/require,/authentication/form,/permission/urls

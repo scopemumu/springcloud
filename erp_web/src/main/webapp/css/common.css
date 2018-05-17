@@ -1,0 +1,17 @@
+.float-left {
+    float: left !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
+.on.navbar-left{
+}
+
+.on.page-wrapper{
+}
+
+.page-header{
+    margin: 20px 0px 15px 0px;
+}

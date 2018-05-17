@@ -1,0 +1,104 @@
+#cloud
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+  instance:
+    hostname: localhost
+    instance-id: http://localhost:8082
+
+server:
+  port: 8082
+
+#feign
+feign:
+    
+#hystrix    
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+
+#Spring
+spring:
+  application:
+    name: productdev-service
+  datasource:
+    url: jdbc:mysql://192.168.1.226:3306/erp_productdev
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456!
+    validation-query: SELECT 1;
+    sql-script-encoding: UTF-8
+    initial-size: 1
+    maxActive: 50
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    removeAbandonedTimeout: 5000
+    maxPoolPreparedStatementPerConnectionSize: 300
+  data:
+    mongodb:
+      smt:
+        host: 192.168.3.110
+        port: 27017
+        database: smt_data
+        username: smt
+        password: smt
+      amazon:
+        host: 192.168.3.110
+        port: 27017
+        database: amazon_data
+        username: smt
+        password: smt
+      wish:
+        host: 192.168.3.110
+        port: 27017
+        database: wish_data
+        username: smt
+        password: smt
+      ebay:
+        host: 192.168.3.110
+        port: 27017
+        database: ebay_data
+        username: smt
+        password: smt
+        
+#安全配置        
+security:
+  oauth2:
+    client:
+      client-id: productdev
+      client-secret: productdev
+      user-authorization-uri: http://localhost:8081/oauth/authorize
+      access-token-uri: http://localhost:8081/oauth/token
+    resource:
+      jwt:
+        key-uri: http://localhost:8081/oauth/token_key
+        
+swagger:
+  service:
+    name: porductdev
+    description: 产品开发
+  contact:
+    name: Kevin
+    url: 
+    email: pengfawen@techa.com
+        
+#axon
+axon:
+  distributed:
+    enabled: true
+  amqp:
+    exchange: erp.EventBus
+    
+zuulProxyName: productdev

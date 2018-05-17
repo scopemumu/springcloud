@@ -1,0 +1,82 @@
+#cloud
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+  instance:
+    hostname: localhost
+    instance-id: http://localhost:8081
+server:
+  port: 8081
+  jsp-servlet:
+    init-parameters:
+      development: true
+#  context-path: /usermgt
+
+#Spring
+spring:
+  application:
+    name: usermgt-service
+  cloud:
+    config:
+      enabled: false
+  datasource:
+    url: jdbc:mysql://192.168.1.226:3306/erp_usermgt
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456!
+    validation-query: SELECT 1;
+    sql-script-encoding: UTF-8
+    initial-size: 1
+    maxActive: 50
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    removeAbandonedTimeout: 5000
+    maxPoolPreparedStatementPerConnectionSize: 300
+  mvc:
+    view:
+      prefix: /jsp/
+      suffix: .jsp
+
+#axon
+axon:
+  distributed:
+    enabled: true
+  amqp:
+    exchange: erp.EventBus
+    
+#安全配置
+#security:
+#  basic:
+#    enabled: false
+
+#security:
+#  oauth2:
+#    client:
+#      client-id: usermgt
+#      client-secret: usermgt
+#      user-authorization-uri: http://localhost:8081/oauth/authorize
+#      access-token-uri: http://localhost:8081/oauth/token
+#    resource:
+#      jwt:
+#        key-uri: http://localhost:8081/oauth/token_key
+
+swagger:
+  service:
+    name: usermgt
+    description: 用户管理
+  contact:
+    name: Kevin
+    url: 
+    email: pengfawen@techa.com
+    
+zuulProxyName: usermgt
+       
